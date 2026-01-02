@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Library</title>
+</head>
+<body>
+
+<h1>📚 Library</h1>
+
+<!-- 🔍 Suche (Schritt 5) -->
+<form method="GET" action="/">
+    <input
+        type="text"
+        name="q"
+        placeholder="Search books..."
+    >
+    <button type="submit">Search</button>
+</form>
+
+<hr>
+
+<!-- 📖 Bücherliste -->
+<ul>
+    {% for book in books %}
+        <li>
+            <strong>{{ book.title }}</strong>
+            von {{ book.author.name }}
+
+            <!-- ❌ Buch löschen (Schritt 6) -->
+            <form
+                action="/book/{{ book.id }}/delete"
+                method="POST"
+                style="display:inline;"
+            >
+                <button type="submit">🗑 Delete</button>
+            </form>
+        </li>
+    {% else %}
+        <li>No books found.</li>
+    {% endfor %}
+</ul>
+
+<hr>
+
+<a href="/add_author">➕ Add Author</a><br>
+<a href="/add_book">➕ Add Book</a>
+
+</body>
+</html>

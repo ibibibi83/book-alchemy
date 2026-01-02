@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Book</title>
+</head>
+<body>
+
+<h1>➕ Add Book</h1>
+
+<form method="POST">
+
+    <label>
+        Title:
+        <input type="text" name="title" required>
+    </label>
+    <br><br>
+
+    <label>
+        Author:
+        <select name="author_id" required>
+            {% for author in authors %}
+                <option value="{{ author.id }}">
+                    {{ author.name }}
+                </option>
+            {% endfor %}
+        </select>
+    </label>
+    <br><br>
+
+    <button type="submit">Add Book</button>
+
+</form>
+
+<br>
+<a href="/">⬅ Back to Home</a>
+
+</body>
+</html>
