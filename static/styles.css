@@ -126,6 +126,31 @@ select{
   outline: none;
     appearance: auto;
 }
+select {
+  width: 100%;
+  padding: 12px 40px 12px 12px; /* rechts Platz für Pfeil */
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(0,0,0,.25);
+  color: var(--text);
+  outline: none;
+
+  /* Standard-Pfeil ausblenden */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  /* Eigener Pfeil */
+  background-image:
+    linear-gradient(45deg, transparent 50%, #eaf0ff 50%),
+    linear-gradient(135deg, #eaf0ff 50%, transparent 50%);
+  background-position:
+    calc(100% - 22px) 50%,
+    calc(100% - 16px) 50%;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+}
+
 
 input:focus{
   border-color: rgba(124,92,255,.8);
