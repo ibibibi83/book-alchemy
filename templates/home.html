@@ -1,50 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Library</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <title>Library</title>
 </head>
 <body>
 
-<h1>📚 Library</h1>
+  <div class="home-container">
+    <div class="card full-size">
 
-<!-- 🔍 Suche (Schritt 5) -->
-<form method="GET" action="/">
-    <input
-        type="text"
-        name="q"
-        placeholder="Search books..."
-    >
-    <button type="submit">Search</button>
-</form>
+      <div class="header">
+        <h1>📚 Library</h1>
+        <span class="badge">Book Alchemy</span>
+      </div>
 
-<hr>
+      <!-- 🔍 Suche -->
+      <form method="GET" action="/">
+        <input type="text" name="q" placeholder="Search books...">
+        <button type="submit">Search</button>
+      </form>
 
-<!-- 📖 Bücherliste -->
-<ul>
-    {% for book in books %}
-        <li>
-            <strong>{{ book.title }}</strong>
-            von {{ book.author.name }}
+      <hr>
 
-            <!-- ❌ Buch löschen (Schritt 6) -->
-            <form
-                action="/book/{{ book.id }}/delete"
-                method="POST"
-                style="display:inline;"
-            >
-                <button type="submit">🗑 Delete</button>
+      <!-- 📖 Bücherliste -->
+      <ul>
+        {% for book in books %}
+          <li class ="inline-item">
+            <div>
+              <strong>{{ book.title }}</strong>
+              <span style="opacity:.75;"> von {{ book.author.name }}</span>
+            </div>
+
+            <!-- ❌ Buch löschen -->
+            <form action="/book/{{ book.id }}/delete"
+                  method="POST"
+                  style="display:inline;">
+              <button type="submit">🗑 Delete</button>
             </form>
-        </li>
-    {% else %}
-        <li>No books found.</li>
-    {% endfor %}
-</ul>
+          </li>
+        {% else %}
+          <li>No books found.</li>
+        {% endfor %}
+      </ul>
 
-<hr>
+      <hr>
 
-<a href="/add_author">➕ Add Author</a><br>
-<a href="/add_book">➕ Add Book</a>
+      <!-- Links -->
+      <div class="actions">
+        <a href="/add_author">➕ Add Author</a>
+        <a href="/add_book">➕ Add Book</a>
+      </div>
+
+    </div>
+  </div>
 
 </body>
 </html>

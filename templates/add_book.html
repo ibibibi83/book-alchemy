@@ -1,45 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Add Book</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <title>Add Book</title>
 </head>
 <body>
 
-<h1>➕ Add Book</h1>
+  <div class="container">
+    <div class="card">
 
-<form method="POST">
+      <div class="header">
+        <h1>➕ Add Book</h1>
+        <span class="badge">Book Alchemy</span>
+      </div>
 
-    <label>
-        Title:
-        <input type="text" name="title" required>
-    </label>
-    <br><br>
+      <form method="POST">
 
-    <label>
-        ISBN:
-        <input type="text" name="isbn" required>
-    </label>
-    <br><br>
+        <label>
+          Title
+          <input type="text" name="title" required>
+        </label>
 
-    <label>
-        Author:
-        <select name="author_id" required>
+        <label>
+          ISBN
+          <input type="text" name="isbn" required>
+        </label>
+
+        <label>
+          Author
+          <select name="author_id" required>
             {% for author in authors %}
-                <option value="{{ author.id }}">
-                    {{ author.name }}
-                </option>
+              <option value="{{ author.id }}">{{ author.name }}</option>
             {% endfor %}
-        </select>
-    </label>
-    <br><br>
+          </select>
+        </label>
 
-    <button type="submit">Add Book</button>
+        <div class="actions">
+          <button type="submit">Add Book</button>
+          <a href="/">⬅ Back to Home</a>
+        </div>
 
-</form>
+      </form>
 
-<br>
-<a href="/">⬅ Back to Home</a>
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flash">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+      {% endwith %}
+
+    </div>
+  </div>
 
 </body>
 </html>
